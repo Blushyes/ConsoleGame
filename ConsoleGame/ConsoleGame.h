@@ -15,8 +15,9 @@
 #define RED 199
 #define BLACK 0
 #define YELLOW 238
+#define Map(x) map[x]
 
-int color, W, H;
+int color, WIDTH, HEIGHT, *map;
 
 void hideConsoleCursor();	//隐藏控制台光标
 
@@ -26,9 +27,9 @@ void changeTextColor(int c);	//改变字体颜色
 
 int getKeyState();	//检测当前按键
 
-void initMap(int* map, const int WIDTH, const int HEIGHT);	//初始化地图
+void initMap(int* m, const int W, const int H);	//初始化地图
 
-void drawMap(int* map);	//画地图
+void drawMap();	//画地图
 
 void getMapCoord(int coord, int* x, int* y);	//反推地图的x，y坐标
 
@@ -36,4 +37,6 @@ void setColor(int c);
 
 int getColor();
 
+int coord(int x, int y);	//获取x，y在map中的坐标
 
+void clear();

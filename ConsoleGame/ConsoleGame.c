@@ -25,30 +25,38 @@ int getKeyState() {
 	return _kbhit() ? _getch() : 0;
 }
 
-void initMap(int* map, const int WIDTH, const int HEIGHT) {
+void initMap(int* m, const int W, const int H) {
 	int i, j;
-	W = WIDTH;
-	H = HEIGHT;
-	for (i = 0; i < H; ++i) {
-		for (j = 0; j < W; ++j) {
-			map[j + i * W] = 0;
+	WIDTH = W;
+	HEIGHT = H;
+	map = m;
+	for (i = 0; i < HEIGHT; ++i) {
+		for (j = 0; j < WIDTH; ++j) {
+			map[coord(i, j)] = 0;
 		}
 	}
 }
 
-void drawMap(int* map) {
+void drawMap() {
 	moveCusorTo(0, 0);
 	int i, j;
-	for (i = 0; i < H; ++i, _cputs("\n")) {
-		for (j = 0; j < W; ++j) {
-			changeTextColor(map[j + i * W]);
+	for (i = 0; i < HEIGHT; ++i, _cputs("\n")) {
+		for (j = 0; j < WIDTH; ++j) {
+			changeTextColor(map[coord(i, j)]);
 			_cputs("  ");
 		}
 	}
 }
 
 void getMapCoord(int coord, int* x, int* y) {  
-	*y = coord % W;
-	*x = (coord - *y) / W;
+	*y = coord % WIDTH;
+	*x = (coord - *y) / WIDTH;
 }
 
+int coord(int x, int y) {
+	return y + x * WIDTH;
+}
+
+void clear() {
+	system("cls");
+}
