@@ -25,8 +25,10 @@ int getKeyState() {
 	return _kbhit() ? _getch() : 0;
 }
 
-void initMap(int* map, const int W, const int H) {
+void initMap(int* map, const int WIDTH, const int HEIGHT) {
 	int i, j;
+	W = WIDTH;
+	H = HEIGHT;
 	for (i = 0; i < H; ++i) {
 		for (j = 0; j < W; ++j) {
 			map[j + i * W] = 0;
@@ -34,7 +36,7 @@ void initMap(int* map, const int W, const int H) {
 	}
 }
 
-void drawMap(int* map, const int W, const int H) {
+void drawMap(int* map) {
 	moveCusorTo(0, 0);
 	int i, j;
 	for (i = 0; i < H; ++i, _cputs("\n")) {
@@ -45,7 +47,7 @@ void drawMap(int* map, const int W, const int H) {
 	}
 }
 
-void getMapCoord(int coord, int* x, int* y, const int W) {  
+void getMapCoord(int coord, int* x, int* y) {  
 	*y = coord % W;
 	*x = (coord - *y) / W;
 }

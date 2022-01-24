@@ -18,7 +18,7 @@ int main() {
 	map[food] = YELLOW;
 
 	//游戏主循环
-	drawMap(map, W, H);
+	drawMap(map);
 	while (1) {
 		int i, x, y, r, c, tmp, last;
 
@@ -43,7 +43,7 @@ int main() {
 
 		//蛇的自动移动
 		if (buffer > 100) {
-			getMapCoord(snake[0], &x, &y, W);
+			getMapCoord(snake[0], &x, &y);
 			tmp = x + direction[head];
 			r = tmp < 0 ? H - 1 : tmp >= H ? 0 : tmp;
 			tmp = y + direction[head + 1];
@@ -77,7 +77,7 @@ int main() {
 		buffer += 7;
 		Sleep(10);
 
-		drawMap(map, W, H);
+		drawMap(map);
 	}
 }
 
